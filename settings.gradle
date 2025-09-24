@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Parcial-1-pm-acn4av-Gonzales-Oturakdjian"
+rootProject.name = "Parcial-1-am-acn4av-Gonzales-Oturakdjian"
 include ':app'
