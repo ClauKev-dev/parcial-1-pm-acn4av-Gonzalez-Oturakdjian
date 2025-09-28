@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MediPocket</string>
     <string name="productos_title">Productos</string>
+    <string name="perfil">Perfil</string>
+    <string name="buscar">Buscar...</string>
+    <string name="mi_direcci_n_calle_123">Mi dirección: Calle 123</string>
 </resources>
