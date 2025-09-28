@@ -13,9 +13,9 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="5"
-        android:background="@android:color/white"> <!-- Fondo blanco para el contenido -->
+        android:background="@android:color/white">
 
-        <!-- Home -->
+
         <LinearLayout
             android:id="@+id/tab_home"
             android:layout_width="0dp"
@@ -30,19 +30,18 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
-                app:tint="?attr/colorPrimary" />
+                app:tint="#70CC7C"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
-                android:textSize="10sp"
-                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
 
         </LinearLayout>
 
-        <!-- Descuentos -->
         <LinearLayout
             android:id="@+id/tab_descuentos"
             android:layout_width="0dp"
@@ -57,25 +56,25 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_discount"
-                app:tint="?attr/colorPrimary" />
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Descuentos"
-                android:textSize="10sp"
-                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
 
         </LinearLayout>
 
-        <!-- Espacio para el botón centrado de TIENDA -->
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <!-- Cuadrado simple -->
+
         <LinearLayout
             android:id="@+id/tab_cuadrado"
             android:layout_width="0dp"
@@ -86,22 +85,22 @@
             android:padding="8dp"
             android:background="?attr/selectableItemBackgroundBorderless">
 
-            <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="?attr/colorPrimary" />
-
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_box"
+                app:tint="#70CC7C"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cuadrado"
-                android:textSize="10sp"
-                android:textColor="?attr/colorPrimary"
+                android:text="lootbox"
+                android:textSize="12sp"
+                android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
 
         </LinearLayout>
 
-        <!-- Menú Hamburguesa -->
+
         <LinearLayout
             android:id="@+id/tab_menu"
             android:layout_width="0dp"
@@ -116,21 +115,21 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_menu"
-                app:tint="?attr/colorPrimary" />
+                app:tint="#70CC7C" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Menú"
-                android:textSize="10sp"
-                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Botón TIENDA centrado y elevado -->
+
     <LinearLayout
         android:id="@+id/tab_tienda"
         android:layout_width="70dp"
@@ -150,14 +149,6 @@
             android:src="@drawable/ic_store"
             app:tint="@android:color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TIENDA"
-            android:textSize="8sp"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="2dp" />
 
     </LinearLayout>
 

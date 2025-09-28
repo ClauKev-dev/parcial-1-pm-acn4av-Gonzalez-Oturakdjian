@@ -20,14 +20,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupBottomNavigation() {
-        // Encuentra las vistas
+
         tabHome = findViewById(R.id.tab_home);
         tabDescuentos = findViewById(R.id.tab_descuentos);
         tabTienda = findViewById(R.id.tab_tienda);
         tabCuadrado = findViewById(R.id.tab_cuadrado);
         tabMenu = findViewById(R.id.tab_menu);
 
-        // Configura los listeners
+
         tabHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,23 +70,23 @@ public class MainActivity extends AppCompatActivity {
         switch (tabIndex) {
             case 0:
                 tabHome.setAlpha(1f);
-                // Cambiar fragment o actividad para Home
+
                 break;
             case 1:
                 tabDescuentos.setAlpha(1f);
-                // Cambiar fragment o actividad para Descuentos
+
                 break;
             case 2:
                 tabTienda.setAlpha(1f);
-                // Cambiar fragment o actividad para Tienda
+
                 break;
             case 3:
                 tabCuadrado.setAlpha(1f);
-                // Cambiar fragment o actividad para Cuadrado
+
                 break;
             case 4:
                 tabMenu.setAlpha(1f);
-                // Cambiar fragment o actividad para Menú
+
                 break;
         }
     }
