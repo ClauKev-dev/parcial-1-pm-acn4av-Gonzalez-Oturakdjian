@@ -43,7 +43,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.tvPrice.setText(product.getPriceFormatted());
 
         holder.btnAddToCart.setOnClickListener(v -> {
-            // aviso local (Toast) + notificar al listener
+
             Toast.makeText(context, product.getName() + " agregado al carrito", Toast.LENGTH_SHORT).show();
             if (listener != null) {
                 listener.onAddToCart(product);

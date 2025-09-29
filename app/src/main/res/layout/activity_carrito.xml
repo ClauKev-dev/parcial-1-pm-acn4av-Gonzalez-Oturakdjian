@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Título del carrito -->
+
     <TextView
         android:id="@+id/tvTituloCarrito"
         android:layout_width="wrap_content"
@@ -14,7 +14,7 @@
         android:layout_marginBottom="5dp"
         android:layout_alignParentTop="true" /> <!-- Alineado al principio -->
 
-    <!-- RecyclerView para los productos -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCarrito"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:layout_below="@id/tvTituloCarrito"
         android:layout_above="@id/tvTotal" /> <!-- Asegura que el RecyclerView esté por encima del total -->
 
-    <!-- Total -->
+
     <TextView
         android:id="@+id/tvTotal"
         android:layout_width="wrap_content"

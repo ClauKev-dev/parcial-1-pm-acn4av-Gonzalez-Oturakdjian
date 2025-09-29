@@ -2,21 +2,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 🔝 TOP BAR -->
+
     <include
         layout="@layout/top_navigation_custom"
         android:id="@+id/top_navigation_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- 🔲 CONTENIDO ESPECÍFICO DE CADA ACTIVITY -->
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/top_navigation_custom" />
 
-    <!-- 🔽 BOTTOM NAVIGATION -->
+
     <include
         layout="@layout/bottom_navigation_custom"
         android:layout_width="match_parent"

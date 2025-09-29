@@ -6,13 +6,13 @@ public class Product {
     private int imageResId;
     private String name;
     private double price;
-    private int quantity; // <-- nuevo campo
+    private int quantity;
 
     public Product(int imageResId, String name, double price) {
         this.imageResId = imageResId;
         this.name = name;
         this.price = price;
-        this.quantity = 1; // por defecto
+        this.quantity = 1;
     }
 
     public int getImageResId() { return imageResId; }

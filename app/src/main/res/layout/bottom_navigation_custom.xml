@@ -6,7 +6,7 @@
     android:elevation="8dp"
     android:paddingTop="1dp">
 
-    <!-- 🔽 BOTTOM NAVIGATION (con todas las tabs adentro) -->
+
     <LinearLayout
         android:id="@+id/bottom_nav_container"
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- TAB HOME -->
+
         <LinearLayout
             android:id="@+id/tab_home"
             android:layout_width="0dp"
@@ -44,7 +44,7 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- TAB DESCUENTOS -->
+
         <LinearLayout
             android:id="@+id/tab_descuentos"
             android:layout_width="0dp"
@@ -69,13 +69,13 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- ESPACIO PARA EL BOTÓN CENTRAL -->
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <!-- TAB LOOTBOX -->
+
         <LinearLayout
             android:id="@+id/tab_cuadrado"
             android:layout_width="0dp"
@@ -101,7 +101,7 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- TAB MENÚ -->
+
         <LinearLayout
             android:id="@+id/tab_menu"
             android:layout_width="0dp"
@@ -128,8 +128,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 🛒 BOTÓN CENTRAL FLOTANTE -->
-    <!-- 🛒 BOTÓN CENTRAL FLOTANTE AJUSTADO -->
+
     <LinearLayout
         android:id="@+id/tab_tienda"
         android:layout_width="70dp"

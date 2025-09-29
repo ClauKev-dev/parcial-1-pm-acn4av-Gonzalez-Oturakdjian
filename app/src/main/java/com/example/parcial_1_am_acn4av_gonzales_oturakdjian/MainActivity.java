@@ -24,17 +24,17 @@ public class MainActivity extends BaseActivity {
 
     private LinearLayout tabHome, tabDescuentos, tabTienda, tabCuadrado, tabMenu;
 
-    // Variables para el carrusel
+
     private ViewPager viewPager;
     private LinearLayout layoutDots;
     private CarouselAdapter carouselAdapter;
     private TextView tvCartCount;
     private int cartCount = 0;
 
-    // ARRAY ACTUALIZADO con las imágenes que creaste
+
     private int[] images = {
-            R.drawable.image1,    // Tu primera imagen creada
-            R.drawable.image2     // Tu cuarta imagen creada
+            R.drawable.image1,
+            R.drawable.image2
     };
 
     private int currentPage = 0;
@@ -53,10 +53,10 @@ public class MainActivity extends BaseActivity {
 
         RecyclerView recyclerProducts = findViewById(R.id.recyclerProducts);
 
-// 2 columnas en el grid
+
         recyclerProducts.setLayoutManager(new GridLayoutManager(this, 2));
 
-// Lista de productos
+
         List<Product> productList = new ArrayList<>();
         productList.add(new Product(R.drawable.image3, "Curitas", 3500.0));
         productList.add(new Product(R.drawable.image4, "Jarabe para la tos", 4200.0));
@@ -64,10 +64,10 @@ public class MainActivity extends BaseActivity {
         productList.add(new Product(R.drawable.image6, "Ibuprofeno 400", 6000.0));
 
         ProductAdapter adapter = new ProductAdapter(this, productList, product -> {
-            // Agregar producto al carrito
+
             CarritoManager.agregarProducto(product);
 
-            // Actualizar contador de carrito en pantalla
+
             actualizarCartCount();
         });
         recyclerProducts.setAdapter(adapter);
@@ -81,21 +81,21 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setupCarousel() {
-        // Inicializar ViewPager y dots
+
         viewPager = findViewById(R.id.viewPager);
         layoutDots = findViewById(R.id.layoutDots);
 
-        // Crear y configurar el adaptador CON LAS NUEVAS IMÁGENES
+
         carouselAdapter = new CarouselAdapter(this, images);
         viewPager.setAdapter(carouselAdapter);
 
-        // Crear los dots indicadores
+
         createDots();
 
-        // Configurar el cambio automático de slides
+
         setupAutoSlide();
 
-        // Listener para cambiar los dots cuando se desliza manualmente
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
@@ -114,7 +114,7 @@ public class MainActivity extends BaseActivity {
 
 
     private void createDots() {
-        // Limpiar dots existentes
+
         layoutDots.removeAllViews();
 
         ImageView[] dots = new ImageView[images.length];
@@ -122,10 +122,10 @@ public class MainActivity extends BaseActivity {
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new ImageView(this);
 
-            // Configurar el tamaño y margen de los dots
+
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    20,  // Ancho en pixels
-                    20   // Alto en pixels
+                    20,
+                    20
             );
             params.setMargins(8, 0, 8, 0);
             dots[i].setLayoutParams(params);
@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity {
         for (int i = 0; i < layoutDots.getChildCount(); i++) {
             ImageView dot = (ImageView) layoutDots.getChildAt(i);
 
-            // Cambiar color según si está activo o no
+
             if (i == currentPage) {
                 dot.setBackgroundResource(R.drawable.dot_active);
             } else {
@@ -182,7 +182,7 @@ public class MainActivity extends BaseActivity {
     private void actualizarCartCount() {
         int total = 0;
         for (Product p : CarritoManager.getCarrito()) {
-            total += p.getQuantity(); // suma todas las unidades
+            total += p.getQuantity();
         }
 
         if (total > 0) {

@@ -89,7 +89,7 @@ public class BaseActivity extends AppCompatActivity {
         View.OnClickListener listener = v -> {
             int tabIndex = -1;
 
-            int id = v.getId(); // id del view clickeado
+            int id = v.getId();
 
             if (id == R.id.tab_home) {
                 tabIndex = TAB_HOME;
@@ -99,7 +99,7 @@ public class BaseActivity extends AppCompatActivity {
                 }
             } else if (id == R.id.tab_descuentos) {
                 tabIndex = TAB_DESCUENTOS;
-                // no hay activity, solo resaltar
+
             } else if (id == R.id.tab_tienda) {
                 tabIndex = TAB_TIENDA;
                 if (!(this instanceof CarritoActivity)) {
@@ -108,19 +108,19 @@ public class BaseActivity extends AppCompatActivity {
                 }
             } else if (id == R.id.tab_cuadrado) {
                 tabIndex = TAB_CUADRADO;
-                // no hay activity, solo resaltar
+
             } else if (id == R.id.tab_menu) {
                 tabIndex = TAB_MENU;
-                // no hay activity, solo resaltar
+
             }
 
-            // Resaltar el tab activo
+
             if (tabIndex != -1) {
                 navigateToTab(tabIndex);
             }
         };
 
-        // Asignar listener a todos los tabs
+
         if (tabHome != null) tabHome.setOnClickListener(listener);
         if (tabDescuentos != null) tabDescuentos.setOnClickListener(listener);
         if (tabTienda != null) tabTienda.setOnClickListener(listener);

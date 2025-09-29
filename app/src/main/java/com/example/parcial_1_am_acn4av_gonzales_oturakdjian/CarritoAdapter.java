@@ -38,7 +38,7 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.btnIncrease.setOnClickListener(v -> {
             producto.increaseQuantity();
             notifyItemChanged(position);
-            activity.actualizarTotal(); // ✅ Llamamos al método de la Activity
+            activity.actualizarTotal();
         });
 
         holder.btnDecrease.setOnClickListener(v -> {
@@ -48,7 +48,7 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
                 carrito.remove(position);
             }
             notifyDataSetChanged();
-            activity.actualizarTotal(); // ✅ Llamamos al método de la Activity
+            activity.actualizarTotal();
         });
     }
 
