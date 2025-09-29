@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:elevation="8dp"
     android:paddingTop="1dp">
 
+    <!-- 🔽 BOTTOM NAVIGATION (con todas las tabs adentro) -->
     <LinearLayout
         android:id="@+id/bottom_nav_container"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="5"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-
+        <!-- TAB HOME -->
         <LinearLayout
             android:id="@+id/tab_home"
             android:layout_width="0dp"
@@ -39,9 +42,9 @@
                 android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
-
         </LinearLayout>
 
+        <!-- TAB DESCUENTOS -->
         <LinearLayout
             android:id="@+id/tab_descuentos"
             android:layout_width="0dp"
@@ -55,8 +58,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_discount"
-                />
+                android:src="@drawable/ic_discount" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,16 +67,15 @@
                 android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
-
         </LinearLayout>
 
-
+        <!-- ESPACIO PARA EL BOTÓN CENTRAL -->
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-
+        <!-- TAB LOOTBOX -->
         <LinearLayout
             android:id="@+id/tab_cuadrado"
             android:layout_width="0dp"
@@ -90,17 +91,17 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_box"
                 app:tint="#70CC7C"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="lootbox"
+                android:text="Lootbox"
                 android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
-
         </LinearLayout>
 
-
+        <!-- TAB MENÚ -->
         <LinearLayout
             android:id="@+id/tab_menu"
             android:layout_width="0dp"
@@ -124,24 +125,24 @@
                 android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
-
         </LinearLayout>
-
     </LinearLayout>
 
-
+    <!-- 🛒 BOTÓN CENTRAL FLOTANTE -->
+    <!-- 🛒 BOTÓN CENTRAL FLOTANTE AJUSTADO -->
     <LinearLayout
         android:id="@+id/tab_tienda"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@id/bottom_nav_container"
-        android:layout_marginTop="-25dp"
         android:background="@drawable/circle_background"
         android:gravity="center"
         android:orientation="vertical"
         android:elevation="12dp"
-        android:padding="8dp">
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:translationY="40dp">
 
         <ImageView
             android:id="@+id/iv_cart"
@@ -150,7 +151,6 @@
             android:src="@drawable/ic_store"
             app:tint="@android:color/white" />
 
-        <!-- Contador de carrito -->
         <TextView
             android:id="@+id/tv_cart_count"
             android:layout_width="20dp"
@@ -160,12 +160,10 @@
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:gravity="center"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
             android:visibility="gone"
             android:translationX="15dp"
-            android:translationY="-5dp"/>
+            android:translationY="-5dp" />
     </LinearLayout>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

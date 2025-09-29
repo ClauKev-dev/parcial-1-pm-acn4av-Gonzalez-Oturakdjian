@@ -38,7 +38,6 @@
         android:textColor="@android:color/holo_green_dark"
         android:layout_marginTop="2dp" />
 
-    <!-- Botón de agregar -->
     <Button
         android:id="@+id/btn_add_to_cart"
         android:layout_width="match_parent"
