@@ -6,9 +6,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 import java.util.Timer;
 import java.util.TimerTask;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +43,23 @@ public class MainActivity extends AppCompatActivity {
 
         setupBottomNavigation();
         setupCarousel();
+
+        RecyclerView recyclerProducts = findViewById(R.id.recyclerProducts);
+
+// 2 columnas en el grid
+        recyclerProducts.setLayoutManager(new GridLayoutManager(this, 2));
+
+// Lista de productos
+        List<Product> productList = new ArrayList<>();
+        productList.add(new Product(R.drawable.image3, "Curitas", "$3500"));
+        productList.add(new Product(R.drawable.image4, "Jarabe para la tos", "$4200"));
+        productList.add(new Product(R.drawable.image5, "Tafirol para espamos", "$8000"));
+        productList.add(new Product(R.drawable.image6, "Ibuprofeno 400", "$6000"));
+
+        ProductAdapter adapter = new ProductAdapter(this, productList);
+        recyclerProducts.setAdapter(adapter);
+
+
     }
 
     private void setupCarousel() {
@@ -69,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {}
         });
     }
+
+
 
     private void createDots() {
         // Limpiar dots existentes
