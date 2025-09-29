@@ -144,12 +144,28 @@
         android:padding="8dp">
 
         <ImageView
+            android:id="@+id/iv_cart"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_store"
             app:tint="@android:color/white" />
 
-
+        <!-- Contador de carrito -->
+        <TextView
+            android:id="@+id/tv_cart_count"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle_red"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            android:translationX="15dp"
+            android:translationY="-5dp"/>
     </LinearLayout>
+
 
 </RelativeLayout>

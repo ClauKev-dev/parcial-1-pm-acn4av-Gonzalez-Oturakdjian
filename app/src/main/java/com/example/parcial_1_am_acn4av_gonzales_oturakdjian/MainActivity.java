@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private LinearLayout layoutDots;
     private CarouselAdapter carouselAdapter;
+    private TextView tvCartCount;
+    private int cartCount = 0;
 
     // ARRAY ACTUALIZADO con las imágenes que creaste
     private int[] images = {
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupBottomNavigation();
+        tvCartCount = findViewById(R.id.tv_cart_count);
         setupCarousel();
 
         RecyclerView recyclerProducts = findViewById(R.id.recyclerProducts);
@@ -56,9 +61,12 @@ public class MainActivity extends AppCompatActivity {
         productList.add(new Product(R.drawable.image5, "Tafirol para espamos", "$8000"));
         productList.add(new Product(R.drawable.image6, "Ibuprofeno 400", "$6000"));
 
-        ProductAdapter adapter = new ProductAdapter(this, productList);
+        ProductAdapter adapter = new ProductAdapter(this, productList, product -> {
+            cartCount++;
+            tvCartCount.setText(String.valueOf(cartCount));
+            tvCartCount.setVisibility(View.VISIBLE);
+        });
         recyclerProducts.setAdapter(adapter);
-
 
     }
 

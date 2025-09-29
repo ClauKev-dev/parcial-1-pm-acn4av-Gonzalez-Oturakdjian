@@ -18,9 +18,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private Context context;
     private List<Product> productList;
 
-    public ProductAdapter(Context context, List<Product> productList) {
+    private OnAddToCartListener listener;
+
+    public interface OnAddToCartListener {
+        void onAddToCart(Product product);
+    }
+
+    public ProductAdapter(Context context, List<Product> productList, OnAddToCartListener listener) {
         this.context = context;
         this.productList = productList;
+        this.listener = listener;
     }
 
     @Override
@@ -37,9 +44,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.tvPrice.setText(product.getPrice());
 
         holder.btnAddToCart.setOnClickListener(v -> {
-            Toast.makeText(context,
-                    product.getName() + " agregado al carrito",
-                    Toast.LENGTH_SHORT).show();
+            if (listener != null) {
+                listener.onAddToCart(product);
+            }
         });
     }
 
@@ -62,5 +69,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             btnAddToCart = itemView.findViewById(R.id.btn_add_to_cart);
         }
     }
+
+
 
 }
