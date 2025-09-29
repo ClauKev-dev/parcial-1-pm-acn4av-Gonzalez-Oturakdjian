@@ -18,7 +18,7 @@ public class CarritoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carrito);
+        setContent(R.layout.activity_carrito);
 
         recyclerCarrito = findViewById(R.id.recyclerCarrito);
         tvTotal = findViewById(R.id.tvTotal);

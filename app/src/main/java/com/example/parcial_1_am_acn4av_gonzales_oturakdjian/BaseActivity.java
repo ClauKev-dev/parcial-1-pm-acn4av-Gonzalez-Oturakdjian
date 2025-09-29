@@ -18,6 +18,7 @@ public class BaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_base);
 
         container = findViewById(R.id.container);
+        setContent(R.layout.activity_main);
     }
 
     protected void setContent(@LayoutRes int layoutResId) {
