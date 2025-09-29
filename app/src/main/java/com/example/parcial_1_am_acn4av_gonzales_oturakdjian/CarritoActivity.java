@@ -19,7 +19,7 @@ public class CarritoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContent(R.layout.activity_carrito);
-
+        setupBottomNavigation();
         recyclerCarrito = findViewById(R.id.recyclerCarrito);
         tvTotal = findViewById(R.id.tvTotal);
 

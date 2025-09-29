@@ -67,13 +67,17 @@ public class MainActivity extends BaseActivity {
             // Agregar producto al carrito
             CarritoManager.agregarProducto(product);
 
-            cartCount++;
-            tvCartCount.setText(String.valueOf(cartCount));
-            tvCartCount.setVisibility(View.VISIBLE);
+            // Actualizar contador de carrito en pantalla
+            actualizarCartCount();
         });
         recyclerProducts.setAdapter(adapter);
 
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualizarCartCount();
     }
 
     private void setupCarousel() {
@@ -175,75 +179,18 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void setupBottomNavigation() {
-        tabHome = findViewById(R.id.tab_home);
-        tabDescuentos = findViewById(R.id.tab_descuentos);
-        tabTienda = findViewById(R.id.tab_tienda);
-        tabCuadrado = findViewById(R.id.tab_cuadrado);
-        tabMenu = findViewById(R.id.tab_menu);
+    private void actualizarCartCount() {
+        int total = 0;
+        for (Product p : CarritoManager.getCarrito()) {
+            total += p.getQuantity(); // suma todas las unidades
+        }
 
-        tabHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToTab(0);
-            }
-        });
-
-        tabDescuentos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToTab(1);
-            }
-        });
-
-        LinearLayout tabTienda = findViewById(R.id.tab_tienda);
-        tabTienda.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CarritoActivity.class);
-            startActivity(intent);
-        });
-
-        tabCuadrado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToTab(3);
-            }
-        });
-
-        tabMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToTab(4);
-            }
-        });
-    }
-
-    private void navigateToTab(int tabIndex) {
-        resetTabs();
-
-        switch (tabIndex) {
-            case 0:
-                tabHome.setAlpha(1f);
-                break;
-            case 1:
-                tabDescuentos.setAlpha(1f);
-                break;
-            case 2:
-                tabTienda.setAlpha(1f);
-                break;
-            case 3:
-                tabCuadrado.setAlpha(1f);
-                break;
-            case 4:
-                tabMenu.setAlpha(1f);
-                break;
+        if (total > 0) {
+            tvCartCount.setText(String.valueOf(total));
+            tvCartCount.setVisibility(View.VISIBLE);
+        } else {
+            tvCartCount.setVisibility(View.GONE);
         }
     }
 
-    private void resetTabs() {
-        if (tabHome != null) tabHome.setAlpha(0.6f);
-        if (tabDescuentos != null) tabDescuentos.setAlpha(0.6f);
-        if (tabTienda != null) tabTienda.setAlpha(0.6f);
-        if (tabCuadrado != null) tabCuadrado.setAlpha(0.6f);
-        if (tabMenu != null) tabMenu.setAlpha(0.6f);
-    }
 }
