@@ -1,15 +1,34 @@
 package com.example.parcial_1_am_acn4av_gonzales_oturakdjian;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout tabHome, tabDescuentos, tabTienda, tabCuadrado, tabMenu;
+
+    // Variables para el carrusel
+    private ViewPager viewPager;
+    private LinearLayout layoutDots;
+    private CarouselAdapter carouselAdapter;
+
+    // ARRAY ACTUALIZADO con las imágenes que creaste
+    private int[] images = {
+            R.drawable.image1,    // Tu primera imagen creada
+            R.drawable.image2     // Tu cuarta imagen creada
+    };
+
+    private int currentPage = 0;
+    private Timer timer;
+    private final long DELAY_MS = 500;
+    private final long PERIOD_MS = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,16 +36,112 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupBottomNavigation();
+        setupCarousel();
+    }
+
+    private void setupCarousel() {
+        // Inicializar ViewPager y dots
+        viewPager = findViewById(R.id.viewPager);
+        layoutDots = findViewById(R.id.layoutDots);
+
+        // Crear y configurar el adaptador CON LAS NUEVAS IMÁGENES
+        carouselAdapter = new CarouselAdapter(this, images);
+        viewPager.setAdapter(carouselAdapter);
+
+        // Crear los dots indicadores
+        createDots();
+
+        // Configurar el cambio automático de slides
+        setupAutoSlide();
+
+        // Listener para cambiar los dots cuando se desliza manualmente
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+                updateDots();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
+    }
+
+    private void createDots() {
+        // Limpiar dots existentes
+        layoutDots.removeAllViews();
+
+        ImageView[] dots = new ImageView[images.length];
+
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new ImageView(this);
+
+            // Configurar el tamaño y margen de los dots
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    20,  // Ancho en pixels
+                    20   // Alto en pixels
+            );
+            params.setMargins(8, 0, 8, 0);
+            dots[i].setLayoutParams(params);
+
+            layoutDots.addView(dots[i]);
+        }
+
+        updateDots();
+    }
+
+    private void updateDots() {
+        for (int i = 0; i < layoutDots.getChildCount(); i++) {
+            ImageView dot = (ImageView) layoutDots.getChildAt(i);
+
+            // Cambiar color según si está activo o no
+            if (i == currentPage) {
+                dot.setBackgroundResource(R.drawable.dot_active);
+            } else {
+                dot.setBackgroundResource(R.drawable.dot_inactive);
+            }
+        }
+    }
+
+    private void setupAutoSlide() {
+        final Handler handler = new Handler();
+        final Runnable update = new Runnable() {
+            public void run() {
+                if (currentPage == images.length - 1) {
+                    currentPage = 0;
+                } else {
+                    currentPage++;
+                }
+                viewPager.setCurrentItem(currentPage, true);
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(update);
+            }
+        }, DELAY_MS, PERIOD_MS);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     private void setupBottomNavigation() {
-
         tabHome = findViewById(R.id.tab_home);
         tabDescuentos = findViewById(R.id.tab_descuentos);
         tabTienda = findViewById(R.id.tab_tienda);
         tabCuadrado = findViewById(R.id.tab_cuadrado);
         tabMenu = findViewById(R.id.tab_menu);
-
 
         tabHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,23 +185,18 @@ public class MainActivity extends AppCompatActivity {
         switch (tabIndex) {
             case 0:
                 tabHome.setAlpha(1f);
-
                 break;
             case 1:
                 tabDescuentos.setAlpha(1f);
-
                 break;
             case 2:
                 tabTienda.setAlpha(1f);
-
                 break;
             case 3:
                 tabCuadrado.setAlpha(1f);
-
                 break;
             case 4:
                 tabMenu.setAlpha(1f);
-
                 break;
         }
     }
