@@ -3,6 +3,7 @@ package com.example.parcial_1_am_acn4av_gonzales_oturakdjian;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +14,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
 
     private List<Product> carrito;
 
-    public CarritoAdapter(List<Product> carrito) {
+    private CarritoActivity activity;
+
+    public CarritoAdapter(CarritoActivity activity, List<Product> carrito) {
+        this.activity = activity;
         this.carrito = carrito;
     }
 
@@ -29,7 +33,25 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.ivProduct.setImageResource(producto.getImageResId());
         holder.tvName.setText(producto.getName());
         holder.tvPrice.setText(producto.getPriceFormatted());
+        holder.tvQuantity.setText(String.valueOf(producto.getQuantity()));
+
+        holder.btnIncrease.setOnClickListener(v -> {
+            producto.increaseQuantity();
+            notifyItemChanged(position);
+            activity.actualizarTotal(); // ✅ Llamamos al método de la Activity
+        });
+
+        holder.btnDecrease.setOnClickListener(v -> {
+            if (producto.getQuantity() > 1) {
+                producto.setQuantity(producto.getQuantity() - 1);
+            } else {
+                carrito.remove(position);
+            }
+            notifyDataSetChanged();
+            activity.actualizarTotal(); // ✅ Llamamos al método de la Activity
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -38,13 +60,18 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
 
     static class CarritoViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice;
+        TextView tvName, tvPrice, tvQuantity;
+        Button btnIncrease, btnDecrease;
 
         public CarritoViewHolder(View itemView) {
             super(itemView);
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvQuantity = itemView.findViewById(R.id.tvQuantity);
+            btnIncrease = itemView.findViewById(R.id.btnIncrease);
+            btnDecrease = itemView.findViewById(R.id.btnDecrease);
         }
     }
+
 }

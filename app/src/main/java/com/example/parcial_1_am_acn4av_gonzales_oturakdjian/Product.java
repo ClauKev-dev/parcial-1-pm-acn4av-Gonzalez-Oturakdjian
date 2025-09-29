@@ -6,19 +6,24 @@ public class Product {
     private int imageResId;
     private String name;
     private double price;
+    private int quantity; // <-- nuevo campo
 
     public Product(int imageResId, String name, double price) {
         this.imageResId = imageResId;
         this.name = name;
         this.price = price;
+        this.quantity = 1; // por defecto
     }
 
     public int getImageResId() { return imageResId; }
     public String getName() { return name; }
     public double getPrice() { return price; }
+    public int getQuantity() { return quantity; }
 
-    // Método útil para mostrar el precio en la UI
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void increaseQuantity() { this.quantity++; }
+
     public String getPriceFormatted() {
-        return String.format(Locale.getDefault(), "$%.2f", price);
+        return String.format(Locale.getDefault(), "$%.2f", price * quantity);
     }
 }

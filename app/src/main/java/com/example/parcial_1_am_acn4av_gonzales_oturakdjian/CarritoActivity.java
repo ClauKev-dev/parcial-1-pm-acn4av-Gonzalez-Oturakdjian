@@ -26,12 +26,23 @@ public class CarritoActivity extends BaseActivity {
         recyclerCarrito.setLayoutManager(new LinearLayoutManager(this));
 
         List<Product> carrito = CarritoManager.getCarrito(); // tu clase estática previa
-        CarritoAdapter adapter = new CarritoAdapter(carrito);
+        CarritoAdapter adapter = new CarritoAdapter(this, carrito);
         recyclerCarrito.setAdapter(adapter);
 
-        // calcular total
         double total = 0;
-        for (Product p : carrito) total += p.getPrice();
+        for (Product p : carrito) {
+            total += p.getPrice() * p.getQuantity();
+        }
+        tvTotal.setText(String.format(Locale.getDefault(), "Total: $%.2f", total));
+
+    }
+
+    public void actualizarTotal() {
+        double total = 0;
+        for (Product p : CarritoManager.getCarrito()) {
+            total += p.getPrice() * p.getQuantity();
+        }
         tvTotal.setText(String.format(Locale.getDefault(), "Total: $%.2f", total));
     }
+
 }

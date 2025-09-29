@@ -7,7 +7,17 @@ public class CarritoManager {
     private static List<Product> carrito = new ArrayList<>();
 
     public static void agregarProducto(Product product) {
-        carrito.add(product);
+        boolean encontrado = false;
+        for (Product p : carrito) {
+            if (p.getName().equals(product.getName())) {
+                p.increaseQuantity();
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            carrito.add(product);
+        }
     }
 
     public static List<Product> getCarrito() {
@@ -18,3 +28,4 @@ public class CarritoManager {
         carrito.clear();
     }
 }
+

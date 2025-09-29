@@ -3,4 +3,10 @@
     <item name="tvTituloCarrito" type="id" />
     <item name="recyclerCarrito" type="id" />
     <item name="tvTotal" type="id" />
+    <item name="btnDecrease" type="id" />
+    <item name="tvQuantity" type="id" />
+    <item name="btnIncrease" type="id" />
+    <item name="tvPrice" type="id" />
+    <item name="tvName" type="id" />
+    <item name="ivProduct" type="id" />
 </resources>

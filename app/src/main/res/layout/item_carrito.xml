@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="8dp"
     android:gravity="center_vertical">
 
@@ -10,29 +11,86 @@
         android:id="@+id/ivProduct"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:contentDescription="@string/productos_title"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"/>
+        android:src="@drawable/ic_launcher_background" />
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginStart="12dp"
         android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:paddingStart="8dp">
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Producto X"
-            android:textSize="16sp" />
+            android:text="Producto x1"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$100.00"
-            android:textSize="14sp" />
+            android:text="$0.00"
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_green_dark"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="#CCCCCC" >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDecrease"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="1dp"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/white" />
+
+    <TextView
+        android:id="@+id/tvQuantity"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="16sp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:layout_marginEnd="4dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIncrease"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="1dp"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/white" />
+
+</LinearLayout>
 </LinearLayout>
