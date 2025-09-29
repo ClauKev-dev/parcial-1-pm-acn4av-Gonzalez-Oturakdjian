@@ -1,5 +1,6 @@
 package com.example.parcial_1_am_acn4av_gonzales_oturakdjian;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends BaseActivity {
 
     private LinearLayout tabHome, tabDescuentos, tabTienda, tabCuadrado, tabMenu;
 
@@ -56,17 +58,21 @@ public class MainActivity extends AppCompatActivity {
 
 // Lista de productos
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product(R.drawable.image3, "Curitas", "$3500"));
-        productList.add(new Product(R.drawable.image4, "Jarabe para la tos", "$4200"));
-        productList.add(new Product(R.drawable.image5, "Tafirol para espamos", "$8000"));
-        productList.add(new Product(R.drawable.image6, "Ibuprofeno 400", "$6000"));
+        productList.add(new Product(R.drawable.image3, "Curitas", 3500.0));
+        productList.add(new Product(R.drawable.image4, "Jarabe para la tos", 4200.0));
+        productList.add(new Product(R.drawable.image5, "Tafirol para espasmos", 8000.0));
+        productList.add(new Product(R.drawable.image6, "Ibuprofeno 400", 6000.0));
 
         ProductAdapter adapter = new ProductAdapter(this, productList, product -> {
+            // Agregar producto al carrito
+            CarritoManager.agregarProducto(product);
+
             cartCount++;
             tvCartCount.setText(String.valueOf(cartCount));
             tvCartCount.setVisibility(View.VISIBLE);
         });
         recyclerProducts.setAdapter(adapter);
+
 
     }
 
@@ -190,11 +196,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tabTienda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToTab(2);
-            }
+        LinearLayout tabTienda = findViewById(R.id.tab_tienda);
+        tabTienda.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CarritoActivity.class);
+            startActivity(intent);
         });
 
         tabCuadrado.setOnClickListener(new View.OnClickListener() {

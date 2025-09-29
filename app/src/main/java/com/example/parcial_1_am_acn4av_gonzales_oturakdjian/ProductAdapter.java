@@ -15,14 +15,13 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
-    private Context context;
-    private List<Product> productList;
-
-    private OnAddToCartListener listener;
-
     public interface OnAddToCartListener {
         void onAddToCart(Product product);
     }
+
+    private Context context;
+    private List<Product> productList;
+    private OnAddToCartListener listener;
 
     public ProductAdapter(Context context, List<Product> productList, OnAddToCartListener listener) {
         this.context = context;
@@ -41,15 +40,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = productList.get(position);
         holder.ivProduct.setImageResource(product.getImageResId());
         holder.tvName.setText(product.getName());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(product.getPriceFormatted());
 
         holder.btnAddToCart.setOnClickListener(v -> {
+            // aviso local (Toast) + notificar al listener
+            Toast.makeText(context, product.getName() + " agregado al carrito", Toast.LENGTH_SHORT).show();
             if (listener != null) {
                 listener.onAddToCart(product);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {
@@ -69,7 +69,4 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             btnAddToCart = itemView.findViewById(R.id.btn_add_to_cart);
         }
     }
-
-
-
 }
